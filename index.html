@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Two Months, My Love! 🤍</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="start-screen" class="screen active">
+        <div class="heart-background"></div>
+        <div class="content-wrapper">
+            <button id="envelope-button" class="envelope-container">
+                <img src="https://pngimg.com/uploads/envelope/envelope_PNG100796.png" class="envelope-img">
+            </button>
+            <p id="click-text" class="click-text">Click the letter...</p>
+        </div>
+    </div>
+
+    <div id="letter-screen" class="screen">
+        <div class="paper-background">
+            <div class="letter-content">
+                <h1 class="main-heading">My Love,</h1>
+                <p>two months with you. it sounds small when i write it like that, but it doesn’t feel small at all. it feels like something that quietly settled into my days — in the way i reach for my phone without thinking, in the moments i want to tell you things first, in how you linger with me even after we hang up.</p>
+                <p>somehow it feels both quick and slow, like time kept moving normally but my days learned a new rhythm once you became part of them. i catch myself thinking of you in small, ordinary moments — the kind that don’t ask for words, but feel better when they’re shared.</p>
+                <p>what we have isn’t the easiest setup, but it’s ours, and i kind of love that about us. we make closeness out of calls, messages, late replies, shared songs, and quiet understanding. even with miles between us, you feel familiar to me — like someone i’d recognize anywhere.</p>
+                <p>i’m really grateful for our journey so far. for the patience, the learning, the laughter, and the choosing. for the way we didn’t rush past getting to know each other, but let things grow in their own time. every step we’ve taken together has meant something to me.</p>
+                <p>i love you. not in a loud, dramatic way — but in a steady one. the kind that stays. the kind that keeps choosing you, again and again, because it wants to. i’m happy to be here with you, building this at our own pace, in our own way.</p>
+                <p class="closing-message">happy two months, my love. thank you for being part of my days, my thoughts, and my heart. i’m really glad it’s you — and i can’t wait to keep going together.</p>
+                <p class="signature">always yours 🤍</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const envelopeButton = document.getElementById('envelope-button');
+        const startScreen = document.getElementById('start-screen');
+        const letterScreen = document.getElementById('letter-screen');
+        const clickText = document.getElementById('click-text');
+        const paperBackground = document.querySelector('#letter-screen .paper-background');
+
+        envelopeButton.addEventListener('click', () => {
+            // 1. Start the animation for the start screen content to fade/scale out
+            envelopeButton.classList.add('animate-out-scale');
+            clickText.classList.add('fade-out');
+            
+            // 2. After a short delay, start the transition sequence
+            setTimeout(() => {
+                // Hide the start screen
+                startScreen.style.display = 'none';
+
+                // 3. Prepare and show the letter screen
+                letterScreen.style.display = 'flex';
+                
+                // 4. Use a brief timeout to trigger the CSS transition/animation for the letter screen
+                // This gives the browser time to register the display change before applying the class
+                setTimeout(() => {
+                    letterScreen.classList.add('active'); // Fade in the whole screen
+                    paperBackground.classList.add('animate-letter-in'); // Animation for the paper itself
+                }, 10);
+
+            }, 800); // Wait for the 'animate-out-scale' transition to complete (0.7s + buffer)
+        });
+    </script>
+</body>
+</html>

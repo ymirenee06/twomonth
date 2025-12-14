@@ -1,0 +1,218 @@
+/* Basic Reset and Root Variables */
+:root {
+    --primary-pink: #e91e63;
+    --light-pink: #ff69b4;
+    --paper-color: #f7f3e8; /* Light, antique paper color */
+    --text-color: #4a4a4a;
+    --transition-duration: 0.7s;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body, html {
+    height: 100%;
+    font-family: 'Georgia', serif; 
+    background-color: #fff;
+    color: var(--text-color);
+    overflow-x: hidden;
+}
+
+/* --- General Screen Styling --- */
+.screen {
+    width: 100%;
+    min-height: 100vh;
+    display: none; 
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    transition: opacity var(--transition-duration) ease-in-out;
+}
+
+.screen.active {
+    opacity: 1;
+}
+
+/* --- Start Screen Styling --- */
+
+#start-screen {
+    display: flex; 
+    opacity: 0;
+    animation: fadeIn 1s forwards; 
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+.heart-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://welovehandmade.at/wp-content/uploads/2016/01/feber16_1920x1280.jpg'); 
+    background-size: cover;
+    background-position: center;
+    filter: blur(5px) saturate(1.2);
+    opacity: 0.8;
+}
+
+.content-wrapper {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%; /* Ensure proper alignment for children */
+}
+
+.envelope-container {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: transform 0.3s ease-in-out;
+}
+
+.envelope-container:hover {
+    transform: scale(1.05);
+}
+
+.envelope-img {
+    max-width: 80vw; 
+    width: 300px; 
+    height: auto;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2)); 
+}
+
+.click-text {
+    margin-top: 20px;
+    font-size: 1.5em;
+    color: var(--primary-pink);
+    font-family: 'Brush Script MT', cursive; 
+    animation: pulse 2s infinite;
+    transition: opacity var(--transition-duration) ease-out; /* Added transition for fade-out */
+}
+
+/* JS Triggered Animation for Start Screen EXIT */
+.animate-out-scale {
+    animation: scaleOut var(--transition-duration) forwards;
+}
+
+.fade-out {
+    opacity: 0 !important; /* Forces the text to disappear */
+}
+
+@keyframes scaleOut {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(5); opacity: 0; }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* --- Letter Screen Styling --- */
+
+#letter-screen {
+    display: none; 
+    background-color: var(--primary-pink);
+    opacity: 0; 
+    padding: 5vh 5vw; 
+}
+
+#letter-screen.active {
+    opacity: 1;
+}
+
+.paper-background {
+    width: 100%;
+    max-width: 700px; 
+    background-color: var(--paper-color);
+    background-image: url('https://thumbs.dreamstime.com/b/abstract-aged-ancient-antique-art-backdrop-background-beige-blank-brown-crumpled-damaged-decay-design-blank-grain-grunge-material-151086136.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 1px solid #d4c5ac;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    padding: 8vw; 
+    text-align: left;
+    height: auto;
+    min-height: 80vh;
+    border-radius: 5px;
+
+    /* Initial state for the incoming animation */
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Spring-like transition */
+}
+
+/* JS Triggered Animation for Letter Screen ENTRY */
+.animate-letter-in {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.letter-content {
+    line-height: 1.8;
+    font-size: 1.1em;
+    color: #333;
+}
+
+.main-heading {
+    font-size: 2em;
+    font-family: 'Times New Roman', serif;
+    margin-bottom: 1em;
+    color: var(--primary-pink);
+    text-align: center;
+}
+
+.letter-content p {
+    margin-bottom: 1.5em;
+}
+
+.closing-message {
+    margin-top: 2em;
+    font-style: italic;
+}
+
+.signature {
+    text-align: right;
+    font-weight: bold;
+    margin-top: 1em;
+    font-size: 1.2em;
+}
+
+/* --- Responsiveness: PC/Tablet Adjustments (Media Queries) --- */
+
+@media (min-width: 768px) {
+    .envelope-img {
+        width: 350px;
+    }
+
+    .click-text {
+        font-size: 2em;
+    }
+
+    .paper-background {
+        padding: 40px; 
+    }
+
+    .letter-content {
+        font-size: 1.2em;
+    }
+    
+    .main-heading {
+        font-size: 2.5em;
+    }
+}
